@@ -30,12 +30,7 @@
 #             File.join(File.expand_path('~'), "my_account.json"))
 #         .authorize Google::Apis::ComputeV1::ComputeService.new
 
-begin
-  require 'googleauth'
-rescue LoadError
-  raise 'Please install the googleauth gem'
-end
-
+require 'googleauth'
 require 'json'
 require 'net/http'
 
@@ -55,11 +50,7 @@ module Google
     # rubocop:enable Performance/Caller
   end
 
-  begin
-    require 'google/api_client/client_secrets' if Google::Ruby.two?
-  rescue LoadError
-    raise 'Please install the google-api-client gem'
-  end
+  require 'google/api_client/client_secrets' if Google::Ruby.two?
 
   # A class to aquire credentials and authorize Google API calls.
   class Authorization
